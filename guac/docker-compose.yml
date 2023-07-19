@@ -1,0 +1,17 @@
+version: "3"
+services:
+  guacamole:
+    image: flcontainers/guacamole
+    container_name: guacamole
+    restart: always
+    environment:
+      TZ: 'UTC'
+      EXTENSIONS: 'auth-totp'
+    volumes:
+      - postgres:/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8080:8080
+volumes:
+  postgres:
+    driver: local
